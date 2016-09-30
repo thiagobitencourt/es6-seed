@@ -8,6 +8,7 @@
     "url": "https://github.com/thiagobitencourt/es6-seed"
   },
   "scripts": {
+    "start": "http-server -a 0.0.0.0 -p 8888",
     "test": "karma start"
   },
   "keywords": [
@@ -28,6 +29,7 @@
     "browserify": "^13.1.0",
     "gulp": "^3.8.11",
     "gulp-bump": "^2.4.0",
+    "gulp-clean": "^0.3.2",
     "gulp-if": "^2.0.1",
     "gulp-replace": "^0.5.4",
     "gulp-size": "^2.1.0",
