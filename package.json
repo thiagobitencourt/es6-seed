@@ -27,6 +27,9 @@
     "bower": "^1.7.9",
     "browserify": "^13.1.0",
     "gulp": "^3.8.11",
+    "gulp-bump": "^2.4.0",
+    "gulp-if": "^2.0.1",
+    "gulp-replace": "^0.5.4",
     "gulp-size": "^2.1.0",
     "gulp-uglify": "~1.1.0",
     "jasmine-core": "^2.5.2",
@@ -38,6 +41,7 @@
     "karma-spec-reporter": "0.0.26",
     "main-bower-files": "^2.13.1",
     "vinyl-buffer": "~1.0.0",
-    "vinyl-source-stream": "~1.0.0"
+    "vinyl-source-stream": "~1.0.0",
+    "yargs": "^6.0.0"
   }
 }
