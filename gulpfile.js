@@ -12,8 +12,9 @@ var uglify = require('gulp-uglify');
 var gulpif = require('gulp-if');
 var replace = require('gulp-replace');
 var clean = require('gulp-clean');
+var bump = require('gulp-bump');
 
-// var argv = require('yargs').argv; /* Not used yet */
+var argv = require('yargs').argv;
 var Server = require('karma').Server;
 
 var fs = require('fs');
@@ -92,6 +93,22 @@ gulp.task('test', (done) => {
   }, done() ).start();
 });
 
+/* 
+  Increment the version on package.json and bower.json
+  Release types:
+    major 1.0.0
+    minor 0.1.0
+    patch 0.0.1
+*/
+gulp.task('bump', function(){
+  var release = argv.release;
+  
+  return gulp
+    .src(['./bower.json', './package.json'])
+    .pipe(bump({type: release}))
+    .pipe(gulp.dest('./'));
+});
+
 /** Clear any old file from dits directory */
 gulp.task('clean', () => {
   gulp.src('dist/', {read: false})
@@ -104,7 +121,7 @@ gulp.task('dev-ahead', ['transpile:dev', 'common']);
 gulp.task('dist-ahead', ['transpile:dist', 'common']);
 
 /** Default and most used tasks */
-gulp.task('dev', ['clean'], () => { setTimeout(() => { gulp.start('dev-ahead') }, 100) });
+gulp.task('dev', ['clean'], () => { setTimeout(() => { gulp.start('dev-ahead') }, 100) }); // Clean task has a delay, so we need this timeout.
 gulp.task('dist', ['clean'], () => { setTimeout(() => { gulp.start('dist-ahead') }, 100) });
 
 gulp.task('default', ['dist']);

@@ -1,6 +1,6 @@
 {
   "name": "es6-seed",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A base project for angularJS 1.x and ES6 with Karma/Jasmine tests",
   "main": "index.js",
   "repository": {
