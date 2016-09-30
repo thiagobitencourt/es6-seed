@@ -1,0 +1,42 @@
+{
+  "name": "es6-seed",
+  "version": "0.1.0",
+  "description": "A base project for angularJS 1.x and ES6 with Karma/Jasmine tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start"
+  },
+  "keywords": [
+    "AngularJS",
+    "ES6",
+    "JavaScript",
+    "ECMAScript6",
+    "Karma",
+    "Jasmine"
+  ],
+  "author": "Thiago R. M. Bitencourt",
+  "license": "MIT",
+  "devDependencies": {
+    "angular-mocks": "^1.5.8",
+    "babel": "^6.5.2",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "gulp": "^3.9.1",
+    "gulp-size": "^2.1.0",
+    "gulp-uglify": "^2.0.0",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-babel-preprocessor": "~4.0.0",
+    "karma-browserify": "^5.1.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-spec-reporter": "0.0.26",
+    "main-bower-files": "^2.13.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}
