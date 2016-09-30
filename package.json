@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "A base project for angularJS 1.x and ES6 with Karma/Jasmine tests",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thiagobitencourt/es6-seed"
+  },
   "scripts": {
     "test": "karma start"
   },
@@ -16,15 +20,14 @@
   ],
   "author": "Thiago R. M. Bitencourt",
   "license": "MIT",
-  "dependencies": {
-    "angular": "^1.5.8"
-  },
   "devDependencies": {
     "angular-mocks": "^1.5.8",
     "babel": "^6.5.2",
     "babelify": "^5.0.3",
+    "bower": "^1.7.9",
     "browserify": "^13.1.0",
     "gulp": "^3.8.11",
+    "gulp-size": "^2.1.0",
     "gulp-uglify": "~1.1.0",
     "jasmine-core": "^2.5.2",
     "karma": "^1.3.0",
@@ -33,6 +36,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-spec-reporter": "0.0.26",
+    "main-bower-files": "^2.13.1",
     "vinyl-buffer": "~1.0.0",
     "vinyl-source-stream": "~1.0.0"
   }
