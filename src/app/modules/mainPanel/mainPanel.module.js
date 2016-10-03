@@ -7,6 +7,7 @@ export default
   'use strict';
   return angular
   .module('mainPanel', [])
-  .service('mainPanelService', mainPanelService)
-  .controller('mainPanelController', mainPanelController);
+    .service('mainPanelService', mainPanelService)
+    .controller('mainPanelController', mainPanelController)
+    .name;
 })();

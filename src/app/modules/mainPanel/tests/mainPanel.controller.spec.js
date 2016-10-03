@@ -1,17 +1,19 @@
-import mainPanelService from '../mainPanel.service';
-import mainPanelController from '../mainPanel.controller';
+import mainPanel from '../mainPanel.module';
 
 describe('Main Panel Controller', () => {
-  let $controller, panelController, panelService;
+  let $controller, panelController, mainPanelService;
 
-  beforeEach(inject((_$controller_) => {
+  beforeEach(angular.mock.module(mainPanel));
+
+  beforeEach(inject((_$controller_, _mainPanelService_) => {
     $controller = _$controller_;
-
-    panelService = mainPanelService();
-    spyOn(panelService, 'serviceFunction').and.stub();
-
-    panelController = $controller(mainPanelController, {mainPanelService : panelService});
+    mainPanelService = _mainPanelService_;
   }));
+
+  beforeEach(() => {
+    spyOn(mainPanelService, 'serviceFunction').and.stub();
+    panelController = $controller('mainPanelController');
+  });
 
   it('Should be defined', () => {
     expect(panelController).toBeDefined();
@@ -22,7 +24,7 @@ describe('Main Panel Controller', () => {
   });
 
   it('should call the "serviceFunction"', () => {
-    expect(panelService.serviceFunction).toHaveBeenCalledWith('value');
+    panelController.$onInit();
+    expect(mainPanelService.serviceFunction).toHaveBeenCalledWith('value');
   });
-
 });
