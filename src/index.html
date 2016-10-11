@@ -8,11 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-  
+
     <section ng-controller="mainPanelController as $main">
       {{$main.hello}}
     </section>
-    
+    <br>
+    <section ng-controller="controllerClass as $class">
+      {{$class.name}}
+    </section>
     <script src="assets/libs/angular/angular.js"></script>
     <script src="app/app.module.js"></script>
   </body>

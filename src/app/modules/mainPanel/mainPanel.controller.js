@@ -1,15 +1,13 @@
 export default (() => {
   'use strict';
 
-  class mainPanelController {
-    constructor(mainPanelService) {
-      this.mainPanelService = mainPanelService;
-      let username = 'Guest'; 
-      this.hello = `Wellcome ${username}`;
-    }
+  function mainPanelController(mainPanelService) {
+    let vm = this;
+    let username = 'Guest';
+    vm.hello = `Wellcome ${username}`;
 
-    $onInit() {
-      this.mainPanelService.serviceFunction('value');
+    vm.$onInit = function() {
+      mainPanelService.serviceFunction('value');
     }
   }
 

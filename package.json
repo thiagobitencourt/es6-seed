@@ -2,7 +2,7 @@
   "name": "es6-seed",
   "version": "0.1.1",
   "description": "A base project for angularJS 1.x and ES6 with Karma/Jasmine tests",
-  "main": "index.js",
+  "main": "src/index.html",
   "repository": {
     "type": "git",
     "url": "https://github.com/thiagobitencourt/es6-seed"
