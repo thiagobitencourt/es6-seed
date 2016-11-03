@@ -16,5 +16,6 @@ export default (() => {
     }
   }
 
+  ControllerClass.$inject = ['ServiceClass'];
   return ControllerClass;
 })();
