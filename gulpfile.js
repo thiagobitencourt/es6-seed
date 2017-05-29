@@ -1,6 +1,5 @@
 'use strict';
 var gulp = require('gulp');
-var bowerFiles = require('main-bower-files');
 
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
@@ -46,41 +45,21 @@ gulp.task('transpile:dist', () => { transpile() });
 gulp.task('transpile:dev', () => { transpile(true) });
 
 function transpile(development) {
-  if(development) {
-    browserify({ entries: config.src.entry, debug: true })
-      .transform(babelify)
-      .bundle()
-      .pipe(source(config.src.dest))
-      .pipe(buffer())
-      .pipe(replace(config.replace, json.version)) // Replace @@VERSION@@
-      // .pipe(gulpif(development, uglify())) //gulp-if not working
-      .pipe(size())
-      .pipe(gulp.dest(config.folder.dest.app));
-  } else {
-    browserify({ entries: config.src.entry, debug: true })
-      .transform(babelify)
-      .bundle()
-      .pipe(source(config.src.dest))
-      .pipe(buffer())
-      .pipe(replace(config.replace, json.version))
-      .pipe(uglify())
-      .pipe(size())
-      .pipe(gulp.dest(config.folder.dest.app));
-  }
+  browserify({ entries: config.src.entry, debug: true })
+    .transform(babelify)
+    .bundle().on('error', (err) => { console.log(err) })
+    .pipe(source(config.src.dest))
+    .pipe(buffer())
+    .pipe(replace(config.replace, json.version)) // Replace @@VERSION@@
+    .pipe(gulpif(!development, uglify()))
+    .pipe(size())
+    .pipe(gulp.dest(config.folder.dest.app));
 }
 
 gulp.task('copyhtml', () => {
   return gulp.src([config.src.base + '**/*.html'])
     .pipe(replace(config.replace, json.version))
     .pipe(gulp.dest('./dist/'));
-});
-
-/**
- * Copy the bower files to the dist directory
- * It evaluates the bower.json config filte to get the dependencies to be copied.
- */
-gulp.task('copybower', () => {
-  return gulp.src( bowerFiles(), {base: config.libs.src} ).pipe( gulp.dest(config.libs.dest) );
 });
 
 /**
@@ -94,7 +73,7 @@ gulp.task('test', (done) => {
 });
 
 /* 
-  Increment the version on package.json and bower.json
+  Increment the version on package.json
   Release types:
     major 1.0.0
     minor 0.1.0
@@ -104,7 +83,7 @@ gulp.task('bump', function(){
   var release = argv.release;
   
   return gulp
-    .src(['./bower.json', './package.json'])
+    .src(['./package.json'])
     .pipe(bump({type: release}))
     .pipe(gulp.dest('./'));
 });
@@ -115,7 +94,7 @@ gulp.task('clean', () => {
     .pipe(clean());
 });
 
-gulp.task('common', ['copyhtml', 'copybower']);
+gulp.task('common', ['copyhtml']);
 /** DO NOT use this directly */
 gulp.task('dev-ahead', ['transpile:dev', 'common']);
 gulp.task('dist-ahead', ['transpile:dist', 'common']);
