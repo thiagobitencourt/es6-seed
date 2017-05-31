@@ -5,9 +5,8 @@ AngularJS boilerplate for ES6 and Karma/Jasmine unit tests
 
 ```
 npm install
-karma start
-gulp
-npm start
+npm run test
+npm run start
 ```
 
 

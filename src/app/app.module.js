@@ -10,9 +10,4 @@ export default (() => {
     mainPanel,
     classPanel
   ])
-  .config(() => {
-    let version = "@@VERSION@@";
-    localStorage.setItem('es6-seed', version);
-    window.version = version;
-  });
 })();

@@ -1,7 +1,6 @@
 // Karma configuration
 // Generated on Fri Sep 30 2016 10:16:24 GMT-0300 (Hora oficial do Brasil)
 
-const libs = 'assets/libs/';
 const node = '../node_modules/'; 
 
 module.exports = function(config) {
@@ -18,7 +17,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      libs + 'angular/angular.js',
+      node + 'angular/angular.js',
       node + 'angular-mocks/angular-mocks.js',
       'app/**/*.spec.js'
     ],
