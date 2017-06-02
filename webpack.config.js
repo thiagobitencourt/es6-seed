@@ -20,6 +20,13 @@ let config = {
         query: {
           presets: ['es2015']
         }
+      },
+      { 
+        test: /\.html$/, 
+        loader: 'html-loader',
+        exclude: [
+          /index\.html$/
+        ]
       }
     ]
   },
