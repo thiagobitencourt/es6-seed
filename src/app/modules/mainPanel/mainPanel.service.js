@@ -6,6 +6,7 @@ export default (() => {
     let service = { serviceFunction, serviceAttr };
     function serviceFunction(value) {
       serviceAttr = value;
+      return serviceAttr;
     }
     return service;
   };
