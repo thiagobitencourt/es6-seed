@@ -1,7 +1,19 @@
 // Karma configuration
 // Generated on Fri Sep 30 2016 10:16:24 GMT-0300 (Hora oficial do Brasil)
-const node = '../node_modules/'; 
+
+const path = require('path');
 const webpackConfig = require('./webpack.config.js');
+
+// Add code coverage loader to webpack config
+webpackConfig.module.rules.push({
+  test: /\.js$/,
+  include: path.resolve('src/app/'),
+  exclude: [ /\.spec\.js$/],
+  loader: 'istanbul-instrumenter-loader',
+  query: { esModules: true }
+});
+
+const node = '../node_modules/'; 
 
 module.exports = function(config) {
   config.set({
@@ -32,7 +44,11 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec'],
+    reporters: ['spec', 'coverage-istanbul'],
+    coverageIstanbulReporter: {
+        reports: [ 'text-summary', 'html' ],
+        fixWebpackSourcePaths: true
+    },
     // web server port
     port: 9876,
     // enable / disable colors in the output (reporters and logs)
