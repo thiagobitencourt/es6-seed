@@ -2,14 +2,12 @@
 import angular from 'angular';
 
 /** Dependencies modules imports */
-import mainPanel from './modules/mainPanel/mainPanel.module';
-import classPanel from './modules/classPanel/classPanel.module';
-import myComponent from './modules/myComponent/myComponent.module';
+import todoInput from './components/todoInput/todoInput.module';
+import todoApp from './modules/todoApp/todoApp.module';
 
 export default (() => {
   return angular.module('app', [
-    mainPanel,
-    classPanel,
-    myComponent
+    todoInput,
+    todoApp
   ])
 })();
