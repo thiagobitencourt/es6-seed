@@ -51,6 +51,8 @@ module.exports = config;
 
 if(process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'production') {
   module.exports.plugins.push(
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: false
+    })
   )
 }
