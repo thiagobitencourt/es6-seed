@@ -1,7 +1,3 @@
 <h1> {{ vm.title }} </h1>
-
-{{ vm.todoList }}
-
 <todo-input on-add="vm.addTodo(todo)"></todo-input>
-
-<todo-list todo-list="vm.todoList"></todo-list>
+<todo-list items="vm.todoList"></todo-list>
