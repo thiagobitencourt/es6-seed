@@ -7,9 +7,11 @@ function todoInputController()  {
   vm.onAddClick = onAddClick;
 
   function onAddClick() {
-    const todo = { label: vm.label };
-    vm.label = null;
-    vm.onAdd({ todo });
+    if(vm.label) {
+      const todo = { label: vm.label };
+      vm.label = null;
+      vm.onAdd({ todo });
+    }
   }
 }
 
