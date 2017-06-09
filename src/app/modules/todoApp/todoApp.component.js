@@ -1,7 +1,7 @@
 'use strict';
 import todoAppTemplate from './todoApp.html';
 
-function todoAppComponentController(todoAppService) {
+function todoAppComponentController(todoAppRepository) {
   const vm = this;
   vm.$onInit = onInit;
   vm.addTodo = addTodo;
@@ -12,15 +12,15 @@ function todoAppComponentController(todoAppService) {
   }
 
   function addTodo(todo) {
-    todoAppService.save(todo);
+    todoAppRepository.save(todo);
     loadTodoItems();
   }
 
   function loadTodoItems() {
-    vm.todoList = todoAppService.getAll();
+    vm.todoList = todoAppRepository.getAll();
   }
 }
-todoAppComponentController.$inject = ['todoAppService'];
+todoAppComponentController.$inject = ['todoAppRepository'];
 
 export default {
   template: todoAppTemplate,

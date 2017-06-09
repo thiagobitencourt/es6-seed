@@ -1,6 +1,7 @@
 'use strict';
 
-function todoAppService() {
+// Angular free
+function todoAppRepository() {
   let todoList;
   _onInit();
 
@@ -48,4 +49,4 @@ function todoAppService() {
   }
 }
 
-export default todoAppService;
+export default todoAppRepository;

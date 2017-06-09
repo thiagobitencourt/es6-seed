@@ -1,10 +1,10 @@
 'use strict';
 
 import todoAppComponent from './todoApp.component';
-import todoAppService from './todoApp.service';
+import todoAppRepository from './todoApp.service';
 
 export default angular
   .module('todoApp', [])
   .component('todoApp', todoAppComponent)
-  .service('todoAppService', todoAppService)
+  .service('todoAppRepository', todoAppRepository)
   .name;
