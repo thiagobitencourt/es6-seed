@@ -26,6 +26,7 @@ module.exports = function(config) {
     files: [
       node + 'angular/angular.js',
       node + 'angular-mocks/angular-mocks.js',
+       node + 'babel-polyfill/dist/polyfill.js',
       'app/**/*.spec.js'
     ],
     // list of files to exclude
