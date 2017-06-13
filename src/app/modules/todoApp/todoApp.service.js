@@ -2,6 +2,7 @@
 
 // Angular free
 function todoAppRepository() {
+  const storageKey = 'todoApp.items';
   let todoList;
 
   const todoService = {
@@ -10,18 +11,19 @@ function todoAppRepository() {
   return todoService;
 
   function _obtainList() {
-    // TODO: Load list from some where
-    todoList = todoList || [];
+    if(!todoList) {
+      const fromStorage = localStorage.getItem(storageKey) || [];
+      if(typeof fromStorage === 'string') {
+        todoList = JSON.parse(fromStorage);
+      } else {
+        todoList = []
+      }
+    }
     return todoList;
   }
 
-  function _persistList() {
-    // TODO
-  }
-
-  function _getById(id) {
-    const list = _obtainList();
-    return list.find(item => item.id === id)
+  function _persistList(list) {
+    localStorage.setItem(storageKey, JSON.stringify(list));
   }
 
   /**
@@ -31,32 +33,34 @@ function todoAppRepository() {
    */
   function save(todo) {
     const list = _obtainList();
-    const lastTodoItem = list[todoList.length - 1];
+    const lastTodoItem = list[list.length - 1];
     const lastId = (lastTodoItem && lastTodoItem.id) || 0;
 
     todo.id = (lastId + 1);
     list.push(todo);
-    _persistList();
+    _persistList(list);
   }
   /**
    * Set the todo item as done
    */
   function done(id) {
-    const todo = _getById(id);
+    const list = _obtainList();
+    const todo = list.find(item => item.id === id)
     if(todo) {
       todo.done = true;
-      _persistList();
+      _persistList(list);
     }
   }
   /**
    * Remove the todo item from the list
    */
   function remove(id) {
-    const todo = _getById(id);
+    const list = _obtainList();
+    const todo = list.find(item => item.id === id)
     if(todo) {
-      const list = _obtainList();
       const idx = list.indexOf(todo);
-      todoList.splice(idx, 1);
+      list.splice(idx, 1);
+      _persistList(list);
     }
   }
 

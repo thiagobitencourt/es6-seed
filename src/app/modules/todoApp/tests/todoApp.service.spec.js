@@ -5,9 +5,25 @@ import todoAppRepository from '../todoApp.service';
 describe('todo app repository', () => {
   let repository;
 
+  // Mock the localStorage behavior
+  let todoMockItems;
+
+  function fakeSet(key, items) {
+    todoMockItems = items
+  }
+
+  function fakeGet(key) {
+    return todoMockItems;
+  }
+
+  localStorage = {
+    setItem: fakeSet,
+    getItem: fakeGet
+  }
+
   beforeEach(() => {
     repository = todoAppRepository();
-    // spyOn();
+    // spyOn(localStorage, 'setItem').and.callThrought();
   });
 
   it(' the service should be defined', () => {
@@ -16,11 +32,24 @@ describe('todo app repository', () => {
 
   describe(' obtaining the Todo list', () => {
 
-    it(' should get the items from the localStorage service');
+    afterEach(() => {
+      todoMockItems = undefined;
+    })
 
-    it(' should return the found items');
+    it(' should get the items from the localStorage service', () => {
+      spyOn(localStorage, 'getItem').and.stub();
+      repository.getAll();
+      expect(localStorage.getItem).toHaveBeenCalledWith('todoApp.items');
+    });
+
+    it(' should return the found items', () => {
+      todoMockItems = JSON.stringify( [{ label: 'item 0' }] );
+      spyOn(localStorage, 'getItem').and.returnValue(todoMockItems);
+      expect(repository.getAll()).toEqual( JSON.parse(todoMockItems) );
+    });
 
     it(' should return a empty list if none item was found', () => {
+      spyOn(localStorage, 'getItem').and.returnValue(undefined);
       expect(repository.getAll()).toEqual([]);
     });
 
@@ -30,12 +59,21 @@ describe('todo app repository', () => {
     let todoItem = { label: 'new todo item' };
 
     beforeEach(() => {
+      repository = todoAppRepository();
+      todoMockItems = undefined;
+      localStorage.setItem('todoApp.items', []);
+
+      spyOn(localStorage, 'setItem').and.callThrough();
+      spyOn(localStorage, 'getItem').and.callThrough();
       repository.save(todoItem);
     });
 
-    it(' should update the current items list', () => {
-      const todoList = repository.getAll();
-      expect(todoList.length).toEqual(1);
+    it(' should load the items from the localStorage', () => {
+      expect(localStorage.getItem).toHaveBeenCalled();
+    });
+
+    it(' should uptade the localStorage', () => {
+      expect(localStorage.setItem).toHaveBeenCalled();
     });
 
     it(' should set the first ID to it', () => {
@@ -58,13 +96,14 @@ describe('todo app repository', () => {
       expect(todoList[1].id).toBe(firstId + 1);
     });
 
-    it(' should uptade the localStorage');
   });
 
   describe(' on removing an existing todo item by its ID', () => {
     let todoItem = { label: 'new todo item' };
 
     beforeEach(() => {
+      spyOn(localStorage, 'getItem').and.stub();
+      spyOn(localStorage, 'setItem').and.stub();
       repository.save(todoItem);
     });
 
@@ -74,7 +113,9 @@ describe('todo app repository', () => {
       expect(list).toEqual([]);
     });
 
-    it(' should update the localStorage');
+    it(' should update the localStorage', () => {
+      expect(localStorage.setItem).toHaveBeenCalled();
+    });
 
     it(' whill do nothing if the todo item is not found', () => {
       repository.remove(356/*random id*/);
@@ -88,6 +129,8 @@ describe('todo app repository', () => {
     let todoItem = { label: 'new todo item' };
 
     beforeEach(() => {
+      spyOn(localStorage, 'getItem').and.stub();
+      spyOn(localStorage, 'setItem').and.stub();
       repository.save(todoItem);
     });
 
@@ -97,7 +140,9 @@ describe('todo app repository', () => {
       expect(list[0].done).toBe(true);
     });
 
-    it(' should update the localStorage');
+    it(' should update the localStorage', () => {
+      expect(localStorage.setItem).toHaveBeenCalled();
+    });
 
     it(' whill do nothing if the todo item is not found', () => {
       repository.done(356/*random id*/);
