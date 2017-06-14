@@ -11,6 +11,8 @@ export default {
   controller: todoListController,
   controllerAs: 'vm',
   bindings: {
-    items: '='
+    items: '=',
+    remove: '&',
+    done: '&'
   }
 }

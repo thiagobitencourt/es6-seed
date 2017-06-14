@@ -1,10 +1,21 @@
+<style>
+  /* Temp style code, move it to a css file */
+  .todo-item__done { 
+    text-decoration: line-through;
+  }
+</style>
+
 <div>
   <ul>
     <li ng-repeat="item in vm.items track by $index">
       <!--<todo-item item="item"></todo-item>-->
-      <span>
-        {{ item.label }}
-      </span>
+      <p>
+        <span ng-class="{ 'todo-item__done': item.done }">
+          {{ item.label }}
+        </span>
+        <a href="" ng-if="!item.done" ng-click="vm.done({ item: item })"> Done </a>
+        <a href="" ng-click="vm.remove({ item: item })"> Remove </a>
+      </p>
     </li>
   </ul>
 </div>

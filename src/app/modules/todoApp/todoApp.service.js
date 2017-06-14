@@ -23,6 +23,7 @@ function todoAppRepository() {
   }
 
   function _persistList(list) {
+    todoList = list;
     localStorage.setItem(storageKey, JSON.stringify(list));
   }
 

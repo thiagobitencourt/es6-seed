@@ -18,6 +18,8 @@ describe(' todo App main component', () => {
   beforeEach(() => {
     spyOn(todoAppRepository, 'getAll').and.returnValue([]);
     spyOn(todoAppRepository, 'save').and.stub();
+    spyOn(todoAppRepository, 'done').and.stub();
+    spyOn(todoAppRepository, 'remove').and.stub();
   })
 
   it(' the controller should be defined', () => {
@@ -60,5 +62,30 @@ describe(' todo App main component', () => {
     });
 
   });
+
+  describe(' on set the todo item as done', () => {
+    beforeEach(() => {
+      vm.setItemAsDone({ label: 'item 1', id: 1 })
+    })
+    it(' should update the item on the repository', () => {
+      expect(todoAppRepository.done).toHaveBeenCalledWith(1);
+    })
+
+    it(' should reload the todos items', () => {
+      expect(todoAppRepository.getAll).toHaveBeenCalled();
+    })
+  })
+
+  describe(' on remove a todo item', () => {
+    beforeEach(() => {
+      vm.removeItem({ label: 'item 1', id: 1 })
+    })
+    it(' should remove the item on the repository', () => {
+      expect(todoAppRepository.remove).toHaveBeenCalledWith(1);
+    })
+    it(' should reload the todos items', () => {
+      expect(todoAppRepository.getAll).toHaveBeenCalled();
+    })
+  })
 
 });
