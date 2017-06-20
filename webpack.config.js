@@ -3,6 +3,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Generate the index.html
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const packageJson = require('./package');
 
 let config = {
@@ -13,7 +14,7 @@ let config = {
   },
   module: {
     rules: [
-      { 
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
@@ -21,8 +22,15 @@ let config = {
           presets: ['es2015']
         }
       },
-      { 
-        test: /\.html$/, 
+      {
+        test: /\.scss$/, //files wnding with .scss
+        use: ['css-hot-loader'].concat(ExtractTextWebpackPlugin.extract({ // call our plugin with extract method
+          use: ['css-loader', 'sass-loader'], // use these loaders
+          fallback: 'style-loader' // fallback for any CSS not extracted
+        })) // end extract
+      },
+      {
+        test: /\.html$/,
         loader: 'html-loader',
         exclude: [
           /index\.html$/
@@ -31,6 +39,7 @@ let config = {
     ]
   },
   plugins: [
+    new ExtractTextWebpackPlugin('styles.css'),
     new HtmlWebpackPlugin({
       title: 'ES6-SEED',
       version: packageJson.version,
