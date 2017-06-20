@@ -1,0 +1,39 @@
+.container {
+  text-align: center;
+  font-family: 'Mogra', cursive;
+
+  .header {
+    margin: 5% 5% 0% 5%;
+    padding: 20px;
+    box-shadow: 2px 2px 0px 1px #ccc;
+    border-radius: 5px;
+
+    @media screen and (min-width: $break-x-large) {
+      margin: 5% 30% 0% 30%;
+    }
+    @media screen and (min-width: $break-medium) {
+      margin: 5% 20% 0% 20%;
+    }
+    @media screen and (min-width: $break-large) {
+      margin: 5% 30% 0% 30%;
+    }
+  }
+
+  .content {
+    margin: 30px 5% 0% 5%;
+    padding: 20px;
+    box-shadow: 2px 0px 0px #ccc;
+
+    @media screen and (min-width: $break-x-large) {
+      margin: 30px 30% 0% 30%;
+    }
+    @media screen and (min-width: $break-medium) {
+      margin: 30px 20% 0% 20%;
+    }
+    @media screen and (min-width: $break-large) {
+      margin: 30px 30% 0% 30%;
+    }
+  }
+}
+
+.title { }

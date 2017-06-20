@@ -1,7 +1,13 @@
-<h1> {{ vm.title }} </h1>
-<todo-input on-add="vm.addTodo(todo)"></todo-input>
-<todo-list 
-  items="vm.todoList"
-  done="vm.setItemAsDone(item)"
-  remove="vm.removeItem(item)"
-></todo-list>
+<main class="container">
+  <div class="header">
+    <h1 class="title"> {{ vm.title | uppercase }} </h1>
+    <todo-input on-add="vm.addTodo(todo)"></todo-input>
+  </div>
+  <div class="content">
+    <todo-list 
+      items="vm.todoList"
+      done="vm.setItemAsDone(item)"
+      remove="vm.removeItem(item)"
+    ></todo-list>
+  </div>
+</main>

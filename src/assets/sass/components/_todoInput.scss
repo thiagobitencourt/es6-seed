@@ -1,0 +1,42 @@
+$green-color: #5cb85c;
+$green-disabled: #85bb85;
+
+.todo-input {
+  input {
+    height: 30px;
+    width: 150px;
+
+    &:focus {
+      outline: none;
+      border: 1px solid $green-color;
+      box-shadow: 0 0 3px $green-color;
+    }
+
+    @media screen and (min-width: $break-small) {
+      width: 400px;
+    }
+    @media screen and (min-width: $break-x-large) {
+      width: 300px;
+    }
+    @media screen and (min-width: $break-medium) {
+      width: 300px;
+    }
+    @media screen and (min-width: $break-large) {
+      width: 300px;
+    }
+  }
+
+  button {
+    height: 36px;
+    width: 50px;
+    color: white;
+    background-color: $green-color;
+    border: 0px;
+    cursor: pointer;
+
+    &[disabled] {
+      background-color: $green-disabled;
+      cursor: auto;
+    }
+  }
+}

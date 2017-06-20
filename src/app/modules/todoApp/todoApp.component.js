@@ -10,7 +10,7 @@ function todoAppComponentController(todoAppRepository) {
   vm.removeItem = removeItem;
 
   function onInit() {
-    vm.title = "Todo app!";
+    vm.title = "Todo app";
     loadTodoItems();
   }
 
