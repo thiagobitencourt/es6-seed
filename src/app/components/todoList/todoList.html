@@ -1,13 +1,17 @@
 <div>
   <ul>
-    <li ng-repeat="item in vm.items track by $index">
+    <li class="todo-item" ng-repeat="item in vm.items track by $index">
       <!--<todo-item item="item"></todo-item>-->
       <p>
         <span ng-class="{ 'todo-item__done': item.done }">
           {{ item.label }}
         </span>
-        <a href="" ng-if="!item.done" ng-click="vm.done({ item: item })"> Done </a>
-        <a href="" ng-click="vm.remove({ item: item })"> Remove </a>
+        <a class="todo-item__btn btn--green" ng-if="!item.done" ng-click="vm.done({ item: item })">
+          <i class="fa fa-check"></i>
+        </a>
+        <a class="todo-item__btn btn--red" ng-click="vm.remove({ item: item })">
+          <i class="fa fa-trash-o"></i>
+        </a>
       </p>
     </li>
   </ul>

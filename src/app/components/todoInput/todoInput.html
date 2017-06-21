@@ -1,4 +1,7 @@
 <div class="todo-input">
   <input type="text" placeholder="What to do?" ng-model="vm.label">
-  <button type="button" ng-click="vm.onAddClick()" ng-disabled="!vm.label">Add</button>
+  <button type="button" ng-click="vm.onAddClick()" ng-disabled="!vm.label">
+    <i class="fa fa-plus"></i>
+    <span>Add</span>
+  </button>
 </div>
