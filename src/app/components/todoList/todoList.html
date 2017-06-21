@@ -6,12 +6,14 @@
         <span ng-class="{ 'todo-item__done': item.done }">
           {{ item.label }}
         </span>
-        <a class="todo-item__btn btn--green" ng-if="!item.done" ng-click="vm.done({ item: item })">
-          <i class="fa fa-check"></i>
-        </a>
-        <a class="todo-item__btn btn--red" ng-click="vm.remove({ item: item })">
-          <i class="fa fa-trash-o"></i>
-        </a>
+        <span class="set-right">
+          <button class="todo-item__btn btn--green" ng-if="!item.done" ng-click="vm.done({ item: item })">
+            <i class="fa fa-check fa-lg"></i>
+          </button>
+          <button class="todo-item__btn btn--red" ng-click="vm.remove({ item: item })">
+            <i class="fa fa-trash-o fa-lg"></i>
+          </button>
+        </span>
       </p>
     </li>
   </ul>

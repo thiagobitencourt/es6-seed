@@ -1,7 +1,7 @@
 .todo-item {
   height: 50px;
   list-style-type: none;
-  border: 1px solid white;
+  border: 1px solid $white-color;
 
   &:hover {
     border-left: 1px solid $green-color;
@@ -13,15 +13,23 @@
 }
 
 .todo-item__btn {
-    height: 20px;
-    text-decoration: none;
+    height: 30px;
+    width: 35px;
     cursor: pointer;
+    background-color: $white-color;
+    border: none;
+
 
     @at-root .btn--red {
-      color: red;
+      color: $red-color;
     }
 
     @at-root .btn--green {
-      color: green;
+      color: $green-color;
     }
+}
+
+.set-right {
+  float: right;
+  margin-right: 0px;
 }
