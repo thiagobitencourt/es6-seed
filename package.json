@@ -12,7 +12,7 @@
     "start": "webpack-dev-server -d --hot --config webpack.config.js --watch",
     "build": "webpack",
     "build:p": "NODE_ENV=production webpack",
-    "build:wp": "SET NODE_ENV=production & webpack"
+    "build:wp": "SET NODE_ENV=production && webpack"
   },
   "keywords": [
     "AngularJS",
@@ -47,6 +47,7 @@
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "^2.0.3",
     "node-sass": "^4.5.3",
+    "optimize-css-assets-webpack-plugin": "^2.0.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "webpack": "^2.6.1",

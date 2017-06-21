@@ -4,6 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Generate the index.html
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const OptimizeCSSAssets = require('optimize-css-assets-webpack-plugin');
 const packageJson = require('./package');
 
 let config = {
@@ -62,6 +63,7 @@ if(process.env.NODE_ENV && process.env.NODE_ENV.trim() === 'production') {
   module.exports.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: false
-    })
+    }),
+    new OptimizeCSSAssets()
   )
 }
